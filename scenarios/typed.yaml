@@ -1,0 +1,19 @@
+name: typed
+scenarios:
+  - name: typed
+    stop_on_failure: false
+    turns:
+      - expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "Здравствуйте, хочу записаться к терапевту на завтра после обеда."
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "Мой ИИН 900515300127"
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500

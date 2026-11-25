@@ -1,0 +1,42 @@
+name: call
+scenarios:
+  - name: call
+    stop_on_failure: false
+    user:
+      modality: audio
+    turns:
+      - expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "Здравствуйте, хочу записаться к терапевту на завтра после обеда."
+        audio: ../bank/ref_ru.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
+      - user: "Мой ИИН: девять, ноль, ноль, пять, один, пять, три, ноль, ноль, один, два, семь."
+        audio: ../bank/iin_digits.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
+      - user: "Давайте в пятнадцать тридцать."
+        audio: ../bank/pick.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
+      - user: "Да, всё верно."
+        audio: ../bank/yes.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500

@@ -1,0 +1,26 @@
+name: mixed
+scenarios:
+  - name: mixed
+    stop_on_failure: false
+    user:
+      modality: audio
+    turns:
+      - expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "Ертең терапевтке, после обеда, пожалуйста."
+        audio: ../bank/mixed.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
+      - user: "Мой ИИН: девять, ноль, ноль, пять, один, пять, три, ноль, ноль, один, два, семь."
+        audio: ../bank/iin_digits.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500

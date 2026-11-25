@@ -1,0 +1,18 @@
+name: symptom
+scenarios:
+  - name: symptom
+    stop_on_failure: false
+    user:
+      modality: audio
+    turns:
+      - expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "У меня с утра сильно болит в груди и трудно дышать."
+        audio: ../bank/symptom.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500

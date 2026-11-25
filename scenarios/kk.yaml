@@ -1,0 +1,26 @@
+name: kk
+scenarios:
+  - name: kk
+    stop_on_failure: false
+    user:
+      modality: audio
+    turns:
+      - expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - user: "Сәлеметсіз бе, ертең түстен кейін терапевтке жазылғым келеді."
+        audio: ../bank/kk_book.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
+      - user: "Менің ЖСН: тоғыз, нөл, нөл, бес, бір, бес, үш, нөл, нөл, бір, екі, жеті."
+        audio: ../bank/kk_iin.wav
+        expect:
+          - event: bot_stopped_speaking
+            within_ms: 40000
+      - expect:
+          - event: bot_started_speaking
+            within_ms: 2500
